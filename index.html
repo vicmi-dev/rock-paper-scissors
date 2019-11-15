@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Rock-Paper-Scissors</title>
+    </head>
+    <body>
+<script>
+   
+     
+  console.log("Let Start the Game!!");  
+  let userWin = 0;
+  let userLoss = 0;
+  function computerPlay() {
+    let cp = Math.floor(Math.random()*3);
+    switch (cp) {
+      case 0:
+        return "Rock";
+        break;
+      case 1:
+        return "Paper";
+        break;
+     case 2:
+        return "Scissors";
+        break;
+    }
+  }
+  function playerPlay() {
+  let play = prompt("Rock, Paper or Scissors?");
+    if (play.toUpperCase() == "ROCK") {
+      return "Rock";
+    } else if (play.toUpperCase() == "PAPER") {
+      return "Paper";
+    } else if (play.toUpperCase() == "SCISSORS") {
+      return "Scissors";
+    } else {
+      alert("Sorry I couldn't understand what you wanted to say, could you repeat it please?");
+      playerPlay();
+    }
+  }
+  function playRound(playerSelection, computerSelection) {
+    playerSelection = playerPlay();
+    computerSelection = computerPlay();
+    let ps = playerSelection;
+    let cs = computerSelection;
+    if (ps == cs) {
+      return `You have played ${ps} and the computer has played ${cs}. \nIt's a draw!`;
+    } else if ((ps == "Rock" && cs == "Paper") || (ps == "Paper" && cs == "Scissors")
+    || (ps == "Scissors" && cs == "Rock")) {
+      userLoss += 1;
+      return `You have played ${ps} and the computer has played ${cs}. \n Sorry you lose! ${cs} beats ${ps}.`;
+    } else if ((ps == "Rock" && cs == "Scissors") || (ps == "Paper" && cs == "Rock")
+    || (ps == "Scissors" && cs == "Paper")) {
+      userWin += 1;
+      return `You have played ${ps} and the computer has played ${cs}. \nCongratulations you win! ${ps} beats ${cs}.`;
+    } 
+  } 
+  function game() {
+    console.log(playRound()) //1
+    console.log(playRound()) //2
+    console.log(playRound()) //3
+    console.log(playRound()) //4
+    console.log(playRound()) //5
+    console.log(`Wins: ${userWin}\nLosses: ${userLoss}`);
+    if (userWin == userLoss) {
+      return `It's a draw, you were very close!\n Thanks for playing and I hope you've enjoyed it. This exercise is part of the Curriculum of The Odin Project. By vicmi-dev. ` ;
+    } else if (userWin > userLoss) {
+      return `You have nailed it! Congratulations! \n Thanks for playing and I hope've you enjoyed it. This exercise is part of the Curriculum of The Odin Project. By vicmi-dev.`;
+    } else if (userWin < userLoss) {
+      return `So sorry my friend, you've lost. Better luck next time! \n Thanks for playing and I hope you've enjoyed it. This exercise is part of the Curriculum of The Odin Project. By vicmi-dev.`;
+    }
+  }
+  console.log(game());
+  </script>
+</body>
+</html>
